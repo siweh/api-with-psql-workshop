@@ -88,6 +88,7 @@ describe('The Garment API', function () {
 		const garment_by_desc_sql = 'select * from garment where description = $1';
 
 		const garment = await db.one(garment_by_desc_sql, [description]);
+		console.log(garment);
 		assert.equal('Male', garment.gender);
 
 		await supertest(app)
@@ -100,7 +101,7 @@ describe('The Garment API', function () {
 			.get(`/api/garment/${garment.id}`)
 			.expect(200);
 
-		// console.log(response.body)
+		console.log(response.body)
 
 		assert.equal('Unisex', response.body.data.gender);
 
